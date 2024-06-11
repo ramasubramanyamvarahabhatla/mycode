@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Flip</title>
+    <style>
+        .card-container {
+            perspective: 1000px;
+            width: 200px;
+            height: 300px;
+            margin:200px auto;
+        }
+        .card {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+        }
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+        .card-front {
+            background-color: #3498db;
+            text-align: center;
+        }
+        .card-back {
+            background-color: #2ecc71;
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <div class="card-front">
+                Front
+            </div>
+            <div class="card-back">
+                Back
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const card = document.querySelector('.card');
+            card.addEventListener('click', function () {
+                card.classList.toggle('flipped');
+            });
+        });
+    </script>
+</body>
+</html>
