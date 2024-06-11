@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>beard challenge, drag the mustache and place it accordingly</title>
+    <style>
+      #face {
+        height: 600px;
+        width: 300px;
+      }
+      #beard {
+        height: 200px;
+        width: 150px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="./personFace.jpg" id="face" />
+    <img src="./mustache.png" id="beard" />
+  </body>
+  <script>
+    let beard = document.getElementById('beard');
+    let face = document.getElementById('face');
+    document.body.addEventListener('click', moveBeard);
+    function moveBeard(e){
+        console.log(e)
+beard.style.top = e.clientY  + 'px';
+ beard.style.left = e.clientX  + 'px';
+    }
+  </script>
+</html>

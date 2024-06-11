@@ -17,7 +17,7 @@ e. todo list
    search bar
 
 3. games-
-    tic tac toe
+    tic tac toe, beard challenge
 
 4. recursion -
     render directory tree, reddit nested comments
