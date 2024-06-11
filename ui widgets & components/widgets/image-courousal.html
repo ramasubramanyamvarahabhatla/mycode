@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slide Show</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 800px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        img {
+            height: 300px;
+            width: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .navigation p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .navigation p:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        #back {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enjoy the Slide Show</h1>
+        <div class="images">
+            <img id="slideshow" src="" alt="Slideshow">
+            <div class="navigation">
+                <p id="back">&lt;</p>
+                <p id="forward">&gt;</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const imageFolder = [
+            'https://via.placeholder.com/300',
+            'https://via.placeholder.com/400',
+            'https://via.placeholder.com/500',
+            'https://via.placeholder.com/600',
+            'https://via.placeholder.com/700',
+        ];
+
+        let currentIndex = 0;
+
+        const slideshow = document.getElementById('slideshow');
+        const backBtn = document.getElementById('back');
+        const forwardBtn = document.getElementById('forward');
+
+        function showSlide(index) {
+            slideshow.src = imageFolder[index];
+        }
+
+        showSlide(currentIndex);
+
+        backBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + imageFolder.length) % imageFolder.length;
+            showSlide(currentIndex);
+        });
+
+        forwardBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % imageFolder.length;
+            showSlide(currentIndex);
+        });
+    </script>
+</body>
+</html>
