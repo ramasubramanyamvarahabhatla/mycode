@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Render HTML Tree</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+    const html = '<div><span>Hello World</span><p>This is a paragraph.</p></div>';
+
+    function deserialize(htmlString) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlString, 'text/html');
+      const rootNode = doc.body.firstChild;
+
+      function buildTree(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          return node.textContent;
+        }
+
+        const children = Array.from(node.childNodes).map(child => buildTree(child));
+
+        return {
+          tag: node.tagName.toLowerCase(),
+          children: children.filter(child => child !== '')
+        };
+      }
+
+      return buildTree(rootNode);
+    }
+
+    const tree = deserialize(html);
+
+    function renderTree(node, parentElement) {
+      if (typeof node === 'string') {
+        parentElement.appendChild(document.createTextNode(node));
+      } else {
+        const element = document.createElement(node.tag);
+        node.children.forEach(child => renderTree(child, element));
+        parentElement.appendChild(element);
+      }
+    }
+
+    const rootElement = document.getElementById('root');
+    renderTree(tree, rootElement);
+  </script>
+</body>
+</html>
