@@ -1,0 +1,59 @@
+
+
+<div id="comments-container"></div>
+<style>
+    .comment {
+    margin-bottom: 10px;
+}
+
+.children {
+    margin-left: 20px; 
+}
+
+</style>
+<script>
+const commentsContainer = document.getElementById('comments-container');
+
+function renderComment(comment, level) {
+    const commentElement = document.createElement('div');
+    commentElement.classList.add('comment');
+    commentElement.style.marginLeft = `${level * 20}px`; 
+    commentElement.innerHTML = `
+        <div class="comment-body">${comment.text}</div>
+    `;
+    commentsContainer.appendChild(commentElement);
+
+
+    if (comment.children) {
+        const childrenContainer = document.createElement('div');
+        childrenContainer.classList.add('children');
+        comment.children.forEach(childComment => {
+            renderComment(childComment, level + 1);
+        });
+        commentElement.appendChild(childrenContainer);
+    }
+
+    return commentElement;
+}
+
+const commentsData = [
+    { text: 'Parent comment 1', children: [
+        { text: 'Reply to parent 1', children: [
+            { text: 'Nested reply 1', children: [
+                { text: 'Deeper nested reply 1' }
+            ] }
+        ] },
+        { text: 'Another reply to parent 1' }
+    ] },
+    { text: 'Parent comment 2', children: [
+        { text: 'Reply to parent 2' }
+    ] },
+
+];
+
+
+commentsData.forEach(comment => {
+    renderComment(comment, 0);
+});
+
+</script>
