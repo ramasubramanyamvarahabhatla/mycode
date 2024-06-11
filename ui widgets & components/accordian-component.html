@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accordion Component</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    #accordian {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .section {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .section:hover {
+      background-color: #f9f9f9;
+    }
+
+    .content {
+      padding: 10px 20px;
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="accordion"></div>
+  <script>
+    const accordionData = {
+      sections: [
+        {
+          title: "HTML",
+          content: "div, span, h1, h2, h3, h4, h5, h6, p, section, a, href",
+        },
+        {
+          title: "CSS",
+          content: "styling with colors, margin, border, padding and so on",
+        },
+        {
+          title: "JS",
+          content: "ooj, methods",
+        },
+      ],
+    };
+
+    function Accordion(accordionData) {
+      const accordion = document.createElement("div");
+
+      accordionData.sections.forEach((sectionData) => {
+        const section = document.createElement("div");
+        section.classList.add("section");
+        section.textContent = sectionData.title;
+
+        const content = document.createElement("div");
+        content.classList.add("content");
+        content.textContent = sectionData.content;
+
+        section.addEventListener("click", () => {
+          content.classList.toggle("active");
+        });
+
+        accordion.appendChild(section);
+        accordion.appendChild(content);
+      });
+
+      document.getElementById("accordion").appendChild(accordion);
+    }
+
+    Accordion(accordionData);
+  </script>
+</body>
+</html>
