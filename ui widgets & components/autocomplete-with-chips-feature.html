@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material UI Chips with Auto-Suggest</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      margin: 5px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background-color: #e0e0e0;
+    }
+    .avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    .suggestions {
+      position: absolute;
+      z-index: 1000;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      width: calc(100% - 2px);
+    }
+    .suggestion-item {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .suggestion-item:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" id="emailInput">
+        <label for="emailInput">Type email addresses</label>
+        <div id="suggestionsContainer" class="suggestions"></div>
+      </div>
+    </div>
+    <div class="row" id="chipContainer">
+      <!-- Chips will be appended here -->
+    </div>
+  </div>
+
+  <script>
+    const suggestions = ['john@example.com', 'jane@example.com', 'alice@example.com', 'bob@example.com'];
+    const addedEmails = [];
+
+    const emailInput = document.getElementById('emailInput');
+    const chipContainer = document.getElementById('chipContainer');
+    const suggestionsContainer = document.getElementById('suggestionsContainer');
+
+    emailInput.addEventListener('input', function(event) {
+      const value = event.target.value.trim();
+      suggestionsContainer.innerHTML = '';
+
+      if (value.endsWith(',') || value.endsWith(' ')) {
+        const email = value.slice(0, -1);
+        if (!addedEmails.includes(email)) {
+          addChip(email);
+          addedEmails.push(email);
+        }
+        event.target.value = '';
+      } else {
+        const filteredSuggestions = suggestions.filter(suggestion =>
+          suggestion.startsWith(value)
+        );
+
+        if (filteredSuggestions.length > 0) {
+          // Display auto-suggestions
+          filteredSuggestions.forEach(suggestion => {
+            const suggestionItem = document.createElement('div');
+            suggestionItem.className = 'suggestion-item';
+            suggestionItem.textContent = suggestion;
+            suggestionItem.addEventListener('click', function() {
+              emailInput.value = suggestion;
+              suggestionsContainer.innerHTML = '';
+            });
+            suggestionsContainer.appendChild(suggestionItem);
+          });
+        } else {
+          // Hide auto-suggestions
+          suggestionsContainer.innerHTML = '';
+        }
+      }
+    });
+
+    function addChip(email) {
+      const chip = document.createElement('div');
+      chip.className = 'chip';
+      chip.innerHTML = `
+        <img src="https://via.placeholder.com/24" alt="Avatar" class="avatar">
+        ${email}
+        <i class="material-icons">close</i>
+      `;
+      chip.querySelector('i').addEventListener('click', function() {
+        chip.remove();
+        const index = addedEmails.indexOf(email);
+        if (index !== -1) {
+          addedEmails.splice(index, 1);
+        }
+      });
+      chipContainer.appendChild(chip);
+    }
+  </script>
+</body>
+</html>
