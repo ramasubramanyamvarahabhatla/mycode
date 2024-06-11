@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>progress bar component</title>
+    <style>
+        body{
+            width: 600px;
+            margin: 100px auto;
+        }
+        div{
+            border: 1px solid black;
+            height: 30px;
+            width: 200px;
+            margin: 20px;
+            border-radius: 5px;
+        }
+        p{
+            background: blue;
+            height: inherit;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>progress bar</h1>
+
+    <script>
+      function progressBar(percentage) {
+        let body = document.querySelector('body');
+        let div = document.createElement('div');
+        let p = document.createElement('p');
+        p.style.width = `${percentage}%`;
+        p.textContent = `${percentage}%`;
+        div.appendChild(p);
+        body.appendChild(div);
+      }
+      progressBar(14);
+      progressBar(30);
+      progressBar(45);
+      progressBar(65);
+      progressBar(80);
+      progressBar(90);
+
+
+    </script>
+  </body>
+</html>
