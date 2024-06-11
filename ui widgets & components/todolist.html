@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .todocontainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 300px;
+        }
+
+        span {
+            flex-grow: 1;
+        }
+
+        button.delete {
+            background-color: #f44336;
+        }
+
+        button.delete:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="todocontainer">
+        <input type="text" placeholder="Add your task">
+        <button id="submit">Submit</button>
+        <ul>
+            <li><span>cat</span><button class="delete">Delete</button></li>
+            <li><span>dog</span><button class="delete">Delete</button></li>
+            <li><span>rat</span><button class="delete">Delete</button></li>
+        </ul>
+    </div>
+    <script>
+        let inputElement = document.querySelector('input');
+        let addButton = document.getElementById('submit');
+        addButton.addEventListener('click', handleInput);
+
+        function handleInput(e) {
+            let li = document.createElement('li');
+            let span = document.createElement('span');
+            let del = document.createElement('button');
+            span.textContent = inputElement.value;
+            del.textContent = 'Delete';
+            del.className = 'delete';
+            li.appendChild(span);
+            li.appendChild(del);
+            let ul = document.querySelector('ul');
+            ul.appendChild(li);
+            inputElement.value = ''; // Clear the input field after adding task
+        }
+
+        let uls = document.getElementsByTagName('ul');
+        uls[0].addEventListener('click', handleDelete);
+
+        function handleDelete(e) {
+            if (e.target.classList.contains('delete')) {
+                e.target.parentElement.remove();
+            }
+        }
+    </script>
+</body>
+</html>
