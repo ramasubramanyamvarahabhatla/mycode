@@ -14,6 +14,7 @@ e. todo list
    accordian
    tabs
    progress bar
+   search bar
 
 3. games-
     tic tac toe
