@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Star Component</title>
+        <style>
+            body{
+                width: 600px;
+                margin: 100px auto;
+            }
+            .star{
+                display:flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .icon{
+                cursor: pointer;
+            }
+            .click{
+                color: gold;
+            }
+            .hover{
+                color: gold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="starcomponent"></div>
+        <script>
+            let getMain = document.getElementById('starcomponent');
+            getMain.classList.add('star')
+            let star = document.createElement('div');
+             for(let i=0; i< 5; i++){
+                let star = document.createElement('div');
+                star.innerHTML = '&#9733;';
+                star.classList.add('icon');
+                star.id = [i];
+                getMain.append(star);
+             }
+            getMain.addEventListener('click', handleClick);
+            function handleClick(e){
+             let icons =    document.getElementsByClassName('icon');
+                for(let i=0; i< icons.length; i++){
+                    if(e.target.id >= icons[i].id){
+                        icons[i].classList.add('click');
+                   
+                }else{
+                    icons[i].classList.remove('click');
+                }
+            }
+        }
+            getMain.addEventListener('mouseover', handleMouseOver);
+            function handleMouseOver(e){
+                let icons =    document.getElementsByClassName('icon');
+                for(let i=0; i< icons.length; i++){
+                    if(e.target.id >= icons[i].id){
+                        icons[i].classList.add('hover');
+                    }else{
+                        icons[i].classList.remove('hover');
+                    }
+                }
+            }
+            getMain.addEventListener('mouseleave', handleMouseLeave);
+            function handleMouseLeave(e){
+                let icons =    document.getElementsByClassName('icon');
+                for(let i=0; i< icons.length; i++){
+                    icons[i].classList.remove('hover');
+                }
+            }
+        </script>
+    </body>
+</html>
