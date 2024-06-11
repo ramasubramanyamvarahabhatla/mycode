@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>test addEventListener</title>
+        <style>
+            #circle {
+                width: 200px;
+                height: 200px;
+                border: 1px solid black;
+                border-radius: 50%;
+                background: red;
+                align-items: center;
+                margin: 0 auto;
+                cursor: pointer;
+            }
+            #note {
+                margin: 30px;
+                margin: 100px 100px 270px 270px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">Welcome to circle click</div>
+        <div>Click on circle to change its color randomly</div>
+        <div id="wrapper">
+            <div id="circle"></div>
+        </div>
+        <div id="note"></div>
+        <script>
+            let text = document.getElementById('note');
+            text.innerHTML = 'this is added dynamically';
+            let circle = document.getElementById('circle');
+
+            circle.addEventListener('click', (e) => {
+                let randomColor = getRandomColor();
+                circle.style.backgroundColor = randomColor;
+            });
+
+            function getRandomColor() {
+                let letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+        </script>
+    </body>
+</html>

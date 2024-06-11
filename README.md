@@ -10,6 +10,7 @@ c. star rating ,
 d. text - on - banner image , 
 e. todo list, 
 f. button states 
+g. random color generator
 
 2. components -
    accordian
