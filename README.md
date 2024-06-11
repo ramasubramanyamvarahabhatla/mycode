@@ -2,6 +2,7 @@
 Welcome to my collection of front-end development code samples! Below you'll find a variety of projects I've worked on using HTML, CSS, and vanilla JavaScript.
 
 To begin with I will be developing various components which are responsive, accesible and modular.
+I love coding widgets ,you can find some interesting one's under widget folder.
 
 1. widgets -
 a. auto-complete with chips , 
