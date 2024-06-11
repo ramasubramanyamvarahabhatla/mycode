@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tabs Component</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tabs {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .tab-container {
+      position: relative;
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    .content-container {
+      position: absolute;
+      top: 40px; /* Adjust this value as needed */
+      left: 0;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: none;
+      width: 300px;
+    }
+
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="tabs"></div>
+  <script>
+    let tabsSource = [
+      {
+        name: 'HTML',
+        content: 'Skeleton for the page',
+      },
+      {
+        name: 'CSS',
+        content: 'Styling for the page',
+      },
+      {
+        name: 'JS',
+        content: 'Logic for the page',
+      }
+    ];
+
+    let getMainDiv = document.getElementById('tabs');
+    let section = document.createElement('div');
+    section.classList.add('tabs');
+
+    for(let i = 0; i < tabsSource.length; i++){
+      let tabContainer = document.createElement('div');
+      tabContainer.classList.add('tab-container');
+      
+      let button = document.createElement('button');
+      button.textContent = tabsSource[i].name;
+      button.classList.add('button');
+      tabContainer.appendChild(button);
+
+      let contentContainer = document.createElement('div');
+      contentContainer.classList.add('content-container');
+      contentContainer.textContent = tabsSource[i].content;
+      tabContainer.appendChild(contentContainer);
+
+      section.appendChild(tabContainer);
+    }
+
+    getMainDiv.appendChild(section);
+
+    getMainDiv.addEventListener('click', handleTabs);
+
+    function handleTabs(e){
+      let contentContainers = document.querySelectorAll('.content-container');
+      
+      for(let i = 0; i < contentContainers.length; i++){
+        contentContainers[i].classList.remove('active');
+      }
+
+      let selectedContent = e.target.nextElementSibling;
+
+      for(let i = 0; i < contentContainers.length; i++){
+        contentContainers[i].style.display = 'none';
+      }
+
+      selectedContent.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
