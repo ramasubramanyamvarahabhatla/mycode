@@ -19,10 +19,10 @@ e. todo list
     tic tac toe
 
 4. recursion -
-    render directory tree
+    render directory tree, reddit nested comments
 
-5. pagination -
+6. pagination -
     table data display from api , with pagination (5 items per page)
 
-6. deserialize
+7. deserialize
      deserialize html file
