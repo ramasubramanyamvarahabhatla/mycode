@@ -4,11 +4,11 @@ Welcome to my collection of front-end development code samples! Below you'll fin
 To begin with I will be developing various components which are responsive, accesible and modular.
 
 1. widgets -
-auto-complete with chips 
-image courousal 
-star rating 
-text - on - banner image 
-todo list
+a. auto-complete with chips 
+b. image courousal 
+c. star rating 
+d. text - on - banner image 
+e. todo list
 
 2. components -
    accordian
