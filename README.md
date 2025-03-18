@@ -14,16 +14,16 @@ f. button states
 g. random color generator
 
 2. components -
-   accordian
-   tabs
-   progress bar
-   search bar
-   Dropdown_implemetation
-   FAB_Structure
-   Light_Dark_Mode
-   MODAL
-   Toast_Notification
-   Tooltip
+   accordian,
+   tabs,
+   progress bar,
+   search bar,
+   Dropdown_implemetation,
+   FAB_Structure,
+   Light_Dark_Mode,
+   MODAL,
+   Toast_Notification,
+   Tooltip,
    
 
 4. games-
